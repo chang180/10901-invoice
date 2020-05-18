@@ -26,11 +26,11 @@
     </tr>
     <tr>
         <td>特別獎</td>
-        <td><input type="number" name="sp1"></td>
+        <td><input type="number" name="num1"></td>
     </tr>
     <tr>
         <td>特獎</td>
-        <td><input type="number" name="sp2"></td>
+        <td><input type="number" name="num2"></td>
     </tr>
     <tr>
         <td>頭獎</td>
@@ -42,11 +42,11 @@
     </tr>
     <tr>
         <td>二獎</td>
-        <td>44444444</td>
+        <td></td>
     </tr>
     <tr>
         <td>三獎</td>
-        <td>55555555</td>
+        <td></td>
     </tr>
     <tr>
         <td>四獎</td>

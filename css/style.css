@@ -10,7 +10,7 @@
 }
 
 .header ul {
-  list-style-type: nole;
+  list-style-type: none;
 }
 .header ul li {
   display: inline-block;
@@ -21,6 +21,7 @@
 }
 .header ul li a {
   text-decoration: none;
+
 }
 
 .nav {
@@ -39,11 +40,11 @@
   text-decoration: none;
 }
 
-invoice-table{
+.invoice-table{
     border-collapse: collapse;
     border:1px solid #999;
 }
-invoice-table td{
+.invoice-table td{
     border:1px solid #999;
     padding:5px
 }

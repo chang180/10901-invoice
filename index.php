@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="./css/style.css">
     <!-- <link rel="stylesheet" href="./bootstrap-4.4.1-dist/css/bootstrap.css"> -->
     <style>
-        body{
-            min-width:60vw;
-            min-height:50vh;
-        
-        }
+        /* body {
+            min-width: 60vw;
+            min-height: 50vh;
+
+        } */
     </style>
 </head>
 

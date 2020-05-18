@@ -14,17 +14,23 @@
 
     <?php
 
+    if (empty($_GET)) {
+        echo "請選擇要對獎的項目<a href='invoice.php'>各期獎號</a>";
+        exit();
+    }
+
     $award_type = [
-        1 => ["特別獎", 1],
-        2 => ["特獎", 2],
-        3 => ["頭獎", 3],
-        4 => ["二獎", 3],
-        5 => ["三獎", 3],
-        6 => ["四獎", 3],
-        7 => ["五獎", 3],
-        8 => ["六獎", 3],
-        9 => ["增開六獎", 4],
+        1 => ["特別獎", 1, 8],
+        2 => ["特獎", 2, 8],
+        3 => ["頭獎", 3, 8],
+        4 => ["二獎", 3, 7],
+        5 => ["三獎", 3, 6],
+        6 => ["四獎", 3, 5],
+        7 => ["五獎", 3, 4],
+        8 => ["六獎", 3, 3],
+        9 => ["增開六獎", 4, 3],
     ];
+    $aw = $_GET['aw'];
     echo "獎別：" . $award_type[$_GET['aw']][0] . "<br>";
     echo "年份：" . $_GET['year'] . "<br>";
     echo "期別：" . $_GET['period'] . "<br>";
@@ -36,38 +42,60 @@
 
     ]);
 
-    echo "獎號數量：" . $award_nums;
+    echo "<h4>對獎獎號</h4>";
 
-    if($award_nums>1){
-        $award_numbers=all("award_number", [
-            "year" => $_GET['year'],
-            "period" => $_GET['period'],
-            "type" => $award_type[$_GET['aw']][1],
-    
-        ]);
-
-    }else{
-        $award_numbers=find("award_number", [
-            "year" => $_GET['year'],
-            "period" => $_GET['period'],
-            "type" => $award_type[$_GET['aw']][1],
-    
-        ]);
+    foreach ($award_numbers as $num) {
+        echo $num['number'] . "<br>";
     }
-    echo "<pre>";
-    print_r($award_numbers);
-    echo "</pre>";
+
+    // echo "獎號數量：" . $award_nums;
+
+    // if ($award_nums > 1) {
+    //     $award_numbers = all("award_number", [
+    //         "year" => $_GET['year'],
+    //         "period" => $_GET['period'],
+    //         "type" => $award_type[$_GET['aw']][1],
+
+    //     ]);
+    // } else {
+    //     $award_numbers = find("award_number", [
+    //         "year" => $_GET['year'],
+    //         "period" => $_GET['period'],
+    //         "type" => $award_type[$_GET['aw']][1],
+
+    //     ]);
+    // }
+    // echo "<pre>";
+    // print_r($award_numbers);
+    // echo "</pre>";
 
 
     $invoices = all("invoice", [
         "year" => $_GET['year'],
         "period" => $_GET['period'],
-    ])
+    ]);
+    echo "<h4>該期發票號碼</h4>";
+    $t_number = [];
+    foreach ($invoices as $ins) {
+        foreach ($t_nums as $tn) {
+
+            $len = $award_type[$aw][2];
+            $start = 8 - $len;
+            // 針對增開六獎獎號特別處理substr的開始位置
+
+            if ($aw != 9) {
+                $target_num = mb_substr($tn, $start, $len);
+            } else {
+                $target_num = $tn;
+            }
+            if (mb_substr($ins['number'], $start, $len) == $target_num) {
+                echo "<h2 style='color:red'" . $ins['number'] . "中獎了</h2>";
+                echo "<br>";
+            }
+        }
+    }
     ?>
 
-    <pre>
-        <?=print_r($invoices);?>
-    </pre>
 </body>
 
 </html>

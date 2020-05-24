@@ -35,8 +35,8 @@
     <tr>
         <td>頭獎</td>
         <td>
-            <input type="number" name="num3[]">
-            <input type="number" name="num3[]">
+            <input type="number" name="num3[]"><br>
+            <input type="number" name="num3[]"><br>
             <input type="number" name="num3[]">
         </td>
     </tr>
@@ -59,13 +59,13 @@
     <tr>
         <td>六獎</td>
         <td>
-            <input type="number" name="num4[]">
-            <input type="number" name="num4[]">
+            
         </td>
     </tr>
     <tr>
         <td>增開六獎</td>
-        <td></td>
+        <td><input type="number" name="num4[]"><br>
+            <input type="number" name="num4[]"></td>
     </tr>
 </table>
 <input type="submit" value="送出">

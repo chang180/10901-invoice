@@ -39,13 +39,19 @@
         "year" => $_GET['year'],
         "period" => $_GET['period'],
         "type" => $award_type[$_GET['aw']][1],
-
     ]);
-
+    echo "獎號數量:" . $award_nums;
+    
+    $award_numbers = all("award_number", [
+        "year" => $_GET['year'],
+        "period" => $_GET['period'],
+        "type" => $award_type[$aw][1]
+    ]);
     echo "<h4>對獎獎號</h4>";
-
+    $t_num = [];
     foreach ($award_numbers as $num) {
         echo $num['number'] . "<br>";
+        $t_num[] = $num['number'];
     }
 
     // echo "獎號數量：" . $award_nums;
@@ -69,27 +75,32 @@
     // print_r($award_numbers);
     // echo "</pre>";
 
-
+    echo "<h4>該期發票號碼</h4>";
     $invoices = all("invoice", [
         "year" => $_GET['year'],
         "period" => $_GET['period'],
     ]);
-    echo "<h4>該期發票號碼</h4>";
-    $t_number = [];
+    
     foreach ($invoices as $ins) {
-        foreach ($t_nums as $tn) {
+        // var_dump($ins);
+        // echo "<hr>";
+        foreach ($t_num as $tn) {
 
-            $len = $award_type[$aw][2];
-            $start = 8 - $len;
+            $len = 0-$award_type[$aw][2];
+            // $start = 8 - $len;
             // 針對增開六獎獎號特別處理substr的開始位置
 
-            if ($aw != 9) {
-                $target_num = mb_substr($tn, $start, $len);
-            } else {
-                $target_num = $tn;
-            }
-            if (mb_substr($ins['number'], $start, $len) == $target_num) {
-                echo "<h2 style='color:red'" . $ins['number'] . "中獎了</h2>";
+            // 稍做變化 mb_substr 可用負數直接從字串尾取需要的位數
+            $target_num = mb_substr($tn, $len);
+            // echo "<hr>", $target_num, "<hr>";
+
+            // if ($aw != 9) {
+            //     $target_num = mb_substr($tn, $start, $len);
+            // } else {
+            //     $target_num = $tn;
+            // }
+            if (mb_substr($ins['number'], $len) == $target_num) {
+                echo "<h2 style='color:red'>" . $ins['number'] . "中獎了</h2>";
                 echo "<br>";
             }
         }

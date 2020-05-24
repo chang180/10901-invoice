@@ -53,7 +53,7 @@ $num4=all('award_number',['period'=>$period,'year'=>$year,'type'=>4]);  //多筆
 <table class="invoice-table">
     <tr>
         <td>年月份</td>
-        <td><?=$year;?>年<?=$monthStr[$period];?>月</td>
+        <td><?=$year;?>年<?=$monthStr[$period];?></td>
     </tr>
     <tr>
         <td>特別獎</td>

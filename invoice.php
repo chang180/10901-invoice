@@ -68,7 +68,7 @@ $num4=all('award_number',['period'=>$period,'year'=>$year,'type'=>4]);  //多筆
     </tr>
     <tr>
         <td>特獎</td>
-        <td><?=$num2['number'];?></td>
+        <td><?=$num2['number']??'';?></td>
         <td><a href="award.php?aw=2&year=<?=$year;?>&period=<?=$period;?>">對獎</a></td>
     </tr>
     <tr>
